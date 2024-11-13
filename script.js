@@ -27,10 +27,10 @@ function inserirUsuario(eventos) {
     tdId.innerHTML = eventos.id_evento;
     let tdNome = document.createElement('td');
     tdNome.innerHTML = eventos.nome;
-    let tdData = document.createElement('td');
-    tdData.innerHTML = eventos.data;
-    let tdLocal = document.createElement('td');
-    tdLocal.innerHTML = eventos.local;
+    let tdDia = document.createElement('td');
+    tdDia.innerHTML = eventos.dia;
+    let tdLugar = document.createElement('td');
+    tdLugar.innerHTML = eventos.lugar;
     let tdCategoria = document.createElement('td');
     tdCategoria.innerHTML = eventos.categoria;
     let tdAlterar = document.createElement('td');
@@ -47,9 +47,9 @@ function inserirUsuario(eventos) {
     tdExcluir.appendChild(btnExcluir);
     tr.appendChild(tdId);
     tr.appendChild(tdNome);
-    tr.appendChild(tdData);
-    tr.appendChild(tdLocal);
-    tr.appendChild(tdCategoria)
+    tr.appendChild(tdDia);
+    tr.appendChild(tdLugar);
+    tr.appendChild(tdCategoria);
     tr.appendChild(tdAlterar);
     tr.appendChild(tdExcluir);
     tbody.appendChild(tr);
@@ -82,14 +82,14 @@ function excluirUsuario(retorno, id_evento) {
     }
 }
 
-function alterarUsuario(eventos) {
+function alterarUsuario(evento) {
     let tbody = document.getElementById('eventos');
     for (const tr of tbody.children) {
-        if (tr.children[0].innerHTML == eventos.id_evento) {
-            tr.children[1].innerHTML = eventos.nome;
-            tr.children[2].innerHTML = eventos.data;
-            tr.children[3].innerHTML = eventos.local;
-            tr.children[4].innerHTML = eventos.categoria;
+        if (tr.children[0].innerHTML == evento.id_evento) {
+            tr.children[1].innerHTML = evento.nome;
+            tr.children[2].innerHTML = evento.dia;
+            tr.children[3].innerHTML = evento.lugar;
+            tr.children[4].innerHTML = evento.categoria;
         }
     }
 }
@@ -103,82 +103,82 @@ function buscaUsuario(evt) {
         }
     )
         .then(response => response.json())
-        .then(eventos => preencheForm(eventos))
+        .then(evento => preencheForm(evento))
         .catch(error => console.log(error));
 }
 
-function preencheForm(eventos) {
-    let inputIDEvento = document.getElementsByName("id_evento")[0];
-    inputIDEvento.value = eventos.id_evento;
+function preencheForm(evento) {
+    let inputIDUsuario = document.getElementsByName("id_evento")[0];
+    inputIDUsuario.value = evento.id_evento;
     let inputNome = document.getElementsByName("nome")[0];
-    inputNome.value = eventos.nome
-    let inputData = document.getElementsByName("data")[0];
-    inputData.value = eventos.data;
-    let inputLocal = document.getElementsByName("local")[0];
-    inputLocal.value = eventos.local;
+    inputNome.value = evento.nome;
+    let inputDia = document.getElementsByName("dia")[0];
+    inputDia.value = evento.dia;
+    let inputLugar = document.getElementsByName("lugar")[0];
+    inputLugar.value = evento.lugar;
     let inputCategoria = document.getElementsByName("categoria")[0];
-    inputCategoria.value = eventos.categoria;
+    inputCategoria.value = evento.categoria;
 }
 
 function salvarUsuario(event) {
     // parar o comportamento padrão do form
     event.preventDefault();
     // obtém o input id_usuario
-    let inputIDEvento = document.getElementsByName("id_evento")[0];
-    // pega o valor do input id_evento
-    let id_evento = inputIDEvento.value;
+    let inputIDUsuario = document.getElementsByName("id_evento")[0];
+    // pega o valor do input id_usuario
+    let id_evento = inputIDUsuario.value;
 
     let inputNome = document.getElementsByName("nome")[0];
     let nome = inputNome.value;
-    let inputData = document.getElementsByName("data")[0];
-    let data = inputData.value;
-    let inputLocal = document.getElementsByName("local")[0];
-    let local = inputLocal.value;
+    let inputDia = document.getElementsByName("dia")[0];
+    let dia = inputDia.value;
+    let inputLugar = document.getElementsByName("lugar")[0];
+    let lugar = inputLugar.value;
     let inputCategoria = document.getElementsByName("categoria")[0];
     let categoria = inputCategoria.value;
 
     if (id_evento == "") {
-        cadastrar(id_evento, nome, data, local, categoria);
+        cadastrar(id_evento, nome, dia, lugar, categoria);
     } else {
-        alterar(id_evento, nome, data, local, categoria);
+        alterar(id_evento, nome, dia, lugar, categoria);
     }
     document.getElementsByTagName('form')[0].reset();
 }
 
-function cadastrar(id_evento, nome, data, local, categoria) {
+function cadastrar(id_evento, nome, dia, lugar, categoria) {
     fetch('inserir.php',
         {
             method: 'POST',
             body: JSON.stringify({
                 id_evento: id_evento,
                 nome: nome,
-                data: data,
-                local: local,
+                dia: dia,
+                lugar: lugar,
                 categoria: categoria
             }),
             headers: { 'Content-Type': "application/json; charset=UTF-8" }
         }
     )
         .then(response => response.json())
-        .then(usuario => inserirUsuario(usuario))
+        .then(evento => inserirUsuario(evento))
         .catch(error => console.log(error));
 }
 
-function alterar(id_evento, nome, data, local, categoria) {
+function alterar(id_evento, nome, dia, lugar, categoria) {
     fetch('alterar.php',
         {
             method: 'POST',
             body: JSON.stringify({
                 id_evento: id_evento,
                 nome: nome,
-                data: data,
-                local: local,
+                dia: dia,
+                lugar: lugar,
                 categoria: categoria
             }),
             headers: { 'Content-Type': "application/json; charset=UTF-8" }
         }
     )
         .then(response => response.json())
-        .then(usuario => alterarUsuario(usuario))
+        .then(evento => alterarUsuario(evento))
         .catch(error => console.log(error));
 }

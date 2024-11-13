@@ -6,8 +6,8 @@ $conexao = conectar();
 $usuario = json_decode(file_get_contents("php://input"));
 $sql = "UPDATE eventos SET
         nome='$usuario->nome', 
-        data='$usuario->data', 
-        local='$usuario->local'
+        dia='$usuario->email', 
+        lugar='$usuario->senha',
         categoria='$usuario->categoria'
         WHERE id_evento=$usuario->id_evento";
 
