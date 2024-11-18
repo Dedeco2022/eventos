@@ -1,29 +1,31 @@
-.botao{
-  width: 20%;
-  /* Define a largura do botão */
-  display: inline-block;
-  padding: 15px 20px;
-  /* Aumenta o padding do botão */
-  font-size: 16px;
-  text-align: center;
-  text-decoration: none;
-  border: none;
-  border-radius: 20px;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  position: relative;
+}
+
+.brand-logo img {
+  margin-top: -2px;
+  height: 65px;
+}
+
+#nav-mobile {
+  display: flex;
+  justify-content: center; /* Centraliza os itens dentro da lista */
+  margin: 0; /* Remove a margem padrão da lista */
+}
+
+#nav-mobile li {
+  margin: 0 180px;
+  /* Adiciona espaçamento horizontal entre os itens da lista */
+  margin-left: -180px;
+}
+
+#nav-mobile a {
   color: white;
-  background-color: purple;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  /* Cor do texto dos links */
 }
 
-.botao:hover {
-  background-color: plum;
-}
-
-nav .brand-logo img {
-  height: 50px; /* Ajuste o valor conforme necessário */
-  width: auto; /* Mantém a proporção da imagem */
-  margin-top: 6px;
-}
 
 /*!
  * Materialize v1.0.0 (http://materializecss.com)
