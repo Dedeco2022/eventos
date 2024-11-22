@@ -53,7 +53,7 @@ function inserirUsuario(evento) {
     tr.appendChild(tdAlterar);
     tr.appendChild(tdExcluir);
     tbody.appendChild(tr);
-}
+} 
 
 function excluir(evt) {
     let id_evento = evt.currentTarget.id_evento;
