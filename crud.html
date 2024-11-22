@@ -25,15 +25,38 @@
         </div>
     </nav>
 
-
     <main class="container">
+
+        <h1 >CRUD - Eventos</h1>
+        <br>
         <form onsubmit="return salvarUsuario(event);">
-            <label>ID: <input type="number" name="id_evento"></label><br>
-            <label>Nome: <input type="text" name="nome"></label><br>
-            <label>Lugar: <input type="text" name="lugar"></label><br>
-            <label>Categoria: <input type="text" name="categoria"></label><br>
-            <label>Dia: <input type="date" name="dia"></label><br>
-            <input type="submit" value="Salvar Usuário">
+            <input type="number" name="id_evento" hidden>
+            
+            <div class="input-field col s12">
+                <input  id="nome" type="text" class="validate" name="nome" pattern="[A-Za-z0-9\s]+" required>
+               <label for="nome">Nome</label>
+               <span class="helper-text" data-error="Preencha o campo com letras ou números apenas."> </span>
+              </div>
+
+              <div class="input-field col s12">
+                <input  id="lugar" type="text" class="validate" name="lugar" pattern="[A-Za-z0-9\s]+" required>
+               <label for="lugar">Lugar</label>
+               <span class="helper-text" data-error="Preencha o campo com letras ou números apenas."> </span>
+              </div>
+
+              <div class="input-field col s12">
+                <input  id="categoria" type="text" class="validate" name="categoria" pattern="[A-Za-z\s]+" required>
+               <label for="categoria">Categoria</label>
+               <span class="helper-text" data-error="Preencha o campo apenas com letras."> </span>
+              </div>
+
+              <label>Dia: <input type="date" name="dia"></label><br>
+
+
+
+            <input type="submit" value="Salvar Evento">
+
+
         </form>
         <br>
         <table>
@@ -48,7 +71,11 @@
                 </tr>
             </thead>
             <tbody id="eventos"></tbody>
-        </table>
+        </table><br>
+
+        <a href='relatorio.php' class="purple waves-effect waves-light btn"><i class="material-icons right">add</i>Gerar
+            relatório</a>
+        <table class="highlight">
     </main>
 
 
