@@ -8,9 +8,9 @@ $sql = "INSERT INTO eventos
         (nome, lugar, categoria, dia)
         VALUES 
         ('$usuario->nome', 
-        '$usuario->lugar'
-        $usuario->categoria,
-        $usuario->dia)";
+        '$usuario->lugar',
+        '$usuario->categoria',
+        '$usuario->dia')";
 
 executarSQL($conexao, $sql);
 
