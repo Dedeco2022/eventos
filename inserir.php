@@ -12,7 +12,7 @@ $sql = "INSERT INTO eventos
         '$usuario->categoria',
         '$usuario->dia')";
 
-executarSQL($conexao, $sql);
+executarSQL($conexao, $sql); 
 
 $usuario->id_evento = mysqli_insert_id($conexao);
 echo json_encode($usuario);
