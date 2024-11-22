@@ -11,6 +11,6 @@ $sql = "UPDATE eventos SET
         dia='$usuario->dia'
         WHERE id_evento=$usuario->id_evento";
 
-executarSQL($conexao, $sql);
+executarSQL($conexao, $sql); 
 
 echo json_encode($usuario);
