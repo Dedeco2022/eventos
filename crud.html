@@ -33,19 +33,19 @@
             <input type="number" name="id_evento" hidden>
             
             <div class="input-field col s12">
-                <input  id="nome" type="text" class="validate" name="nome" pattern="[A-Za-z0-9\s]+" required>
+                <input  id="nome" type="text" class="validate" name="nome" pattern="[A-Za-zÀ-ÖØ-öø-ÿ0-9\s]+" required>
                <label for="nome">Nome</label>
                <span class="helper-text" data-error="Preencha o campo com letras ou números apenas."> </span>
               </div>
 
               <div class="input-field col s12">
-                <input  id="lugar" type="text" class="validate" name="lugar" pattern="[A-Za-z0-9\s]+" required>
+                <input  id="lugar" type="text" class="validate" name="lugar" pattern="[A-Za-zÀ-ÖØ-öø-ÿ0-9\s]+" required>
                <label for="lugar">Lugar</label>
                <span class="helper-text" data-error="Preencha o campo com letras ou números apenas."> </span>
               </div>
 
               <div class="input-field col s12">
-                <input  id="categoria" type="text" class="validate" name="categoria" pattern="[A-Za-z\s]+" required>
+                <input  id="categoria" type="text" class="validate" name="categoria" pattern="[A-Za-zÀ-ÖØ-öø-ÿ\s]+" required>
                <label for="categoria">Categoria</label>
                <span class="helper-text" data-error="Preencha o campo apenas com letras."> </span>
               </div>
@@ -54,7 +54,7 @@
 
 
 
-            <input type="submit" value="Salvar Evento">
+            <input type="submit" class="botao" value="Salvar Evento">
 
 
         </form>
