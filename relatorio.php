@@ -11,7 +11,7 @@ $options = new Options();
 
 // Permite usar CSS e fontes externas
 $options->set('isRemoteEnabled', true);
-$dompdf = new Dompdf($options);
+$dompdf = new Dompdf($options); 
 
 // HTML inicial
 $dados = '
