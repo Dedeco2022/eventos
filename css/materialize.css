@@ -1,4 +1,25 @@
 
+.botao{
+  width: 20%;
+  /* Define a largura do botão */
+  display: inline-block;
+  padding: 15px 20px;
+  /* Aumenta o padding do botão */
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  background-color: purple;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.botao:hover {
+  background-color: #f88def;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   position: relative;
