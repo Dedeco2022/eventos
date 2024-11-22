@@ -32,5 +32,5 @@ function executarSQL($conexao, $sql)
             mysqli_errno($conexao) . ": " . mysqli_error($conexao);
         die();
     }
-    return $resultado;
+    return $resultado; 
 }
