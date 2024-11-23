@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection" />
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+
+    <!-- Barra de Navegação -->
+    <nav class="navbar purple">
+        <div class="nav-wrapper">
+            <a href="index.html" class="brand-logo"> <img src="foto/evento.png" alt="Logo" class="logo-navbar"></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="crud.html">CRUD</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+
+        <h1 >CRUD - Eventos</h1>
+        <br>
+        <form onsubmit="return salvarUsuario(event);">
+            <input type="number" name="id_evento" hidden>
+            
+            <div class="input-field col s12">
+                <input  id="nome" type="text" class="validate" name="nome" pattern="[A-Za-zÀ-ÖØ-öø-ÿ0-9\s]+" required>
+               <label for="nome">Nome</label>
+               <span class="helper-text" data-error="Preencha o campo com letras ou números apenas."> </span>
+              </div>
+
+              <div class="input-field col s12">
+                <input  id="lugar" type="text" class="validate" name="lugar" pattern="[A-Za-zÀ-ÖØ-öø-ÿ0-9\s]+" required>
+               <label for="lugar">Lugar</label>
+               <span class="helper-text" data-error="Preencha o campo com letras ou números apenas."> </span>
+              </div>
+
+              <div class="input-field col s12">
+                <input  id="categoria" type="text" class="validate" name="categoria" pattern="[A-Za-zÀ-ÖØ-öø-ÿ\s]+" required>
+               <label for="categoria">Categoria</label>
+               <span class="helper-text" data-error="Preencha o campo apenas com letras."> </span>
+              </div>
+
+              <label>Dia: <input type="date" name="dia"></label><br>
+
+
+
+            <input type="submit" class="botao" value="Salvar Evento">
+
+
+        </form>
+        <br>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Lugar</th>
+                    <th>Categoria</th>
+                    <th>Dia</th>
+                    <th colspan="2">Opções</th>
+                </tr>
+            </thead>
+            <tbody id="eventos"></tbody>
+        </table><br>
+
+        <a href='relatorio.php' class="purple waves-effect waves-light btn"><i class="material-icons right">add</i>Gerar
+            relatório</a>
+        <table class="highlight">
+    </main>
+
+
+
+    <script src="script.js"></script>
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+</body>
+
+</html>
