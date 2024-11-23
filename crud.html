@@ -16,9 +16,9 @@
 <body>
 
     <!-- Barra de Navegação -->
-    <nav class="navbar purple">
+    <nav class="navbar ligth blue">
         <div class="nav-wrapper">
-            <a href="index.html" class="brand-logo"> <img src="foto/evento.png" alt="Logo" class="logo-navbar"></a>
+            <a href="index.html" class="brand-logo"> LIVROS</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="crud.html">CRUD</a></li>
             </ul>
@@ -27,34 +27,32 @@
 
     <main class="container">
 
-        <h1 >CRUD - Eventos</h1>
+        <h1 >CRUD - Livros</h1>
         <br>
         <form onsubmit="return salvarUsuario(event);">
-            <input type="number" name="id_evento" hidden>
+            <input type="number" name="id" hidden>
             
             <div class="input-field col s12">
-                <input  id="nome" type="text" class="validate" name="nome" pattern="[A-Za-zÀ-ÖØ-öø-ÿ0-9\s]+" required>
-               <label for="nome">Nome</label>
-               <span class="helper-text" data-error="Preencha o campo com letras ou números apenas."> </span>
-              </div>
-
-              <div class="input-field col s12">
-                <input  id="lugar" type="text" class="validate" name="lugar" pattern="[A-Za-zÀ-ÖØ-öø-ÿ0-9\s]+" required>
-               <label for="lugar">Lugar</label>
+                <input id="titulo" type="text" class="validate" name="titulo" pattern="[A-Za-zÀ-ÖØ-öø-ÿ0-9\s]+" required>
+               <label for="titulo">Titulo</label>
                <span class="helper-text" data-error="Preencha o campo com letras ou números apenas."> </span>
               </div>
 
               <div class="input-field col s12">
                 <input  id="categoria" type="text" class="validate" name="categoria" pattern="[A-Za-zÀ-ÖØ-öø-ÿ\s]+" required>
                <label for="categoria">Categoria</label>
+               <span class="helper-text" data-error="Preencha o campo com letras."> </span>
+              </div>
+
+              <div class="input-field col s12">
+                <input  id="autor" type="text" class="validate" name="autor" pattern="[A-Za-zÀ-ÖØ-öø-ÿ\s]+" required>
+               <label for="autor">Autor</label>
                <span class="helper-text" data-error="Preencha o campo apenas com letras."> </span>
               </div>
 
-              <label>Dia: <input type="date" name="dia"></label><br>
 
 
-
-            <input type="submit" class="botao" value="Salvar Evento">
+            <input type="submit" class="botao" value="Salvar Livro">
 
 
         </form>
@@ -63,17 +61,16 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Nome</th>
-                    <th>Lugar</th>
+                    <th>Titulo</th>
                     <th>Categoria</th>
-                    <th>Dia</th>
+                    <th>Autor</th>
                     <th colspan="2">Opções</th>
                 </tr>
             </thead>
-            <tbody id="eventos"></tbody>
+            <tbody id="livros"></tbody>
         </table><br>
 
-        <a href='relatorio.php' class="purple waves-effect waves-light btn"><i class="material-icons right">add</i>Gerar
+        <a href='relatorio.php' class="ligth blue waves-effect waves-light btn"><i class="material-icons right">add</i>Gerar
             relatório</a>
         <table class="highlight">
     </main>

@@ -14,110 +14,104 @@ function listarTodos() {
         .catch(error => console.log(error));
 }
 
-function inserirUsuarios(eventos) {
-    for (const evento of eventos) {
-        inserirUsuario(evento);
+function inserirUsuarios(livros) {
+    for (const livro of livros) {
+        inserirUsuario(livro);
     }
 }
 
-function inserirUsuario(evento) {
-    let tbody = document.getElementById('eventos');
+function inserirUsuario(livro) {
+    let tbody = document.getElementById('livros');
     let tr = document.createElement('tr');
     let tdId = document.createElement('td');
-    tdId.innerHTML = evento.id_evento;
-    let tdNome = document.createElement('td');
-    tdNome.innerHTML = evento.nome;
-    let tdLugar = document.createElement('td');
-    tdLugar.innerHTML = evento.lugar;
+    tdId.innerHTML = livro.id;
+    let tdTitulo = document.createElement('td');
+    tdTitulo.innerHTML = livro.titulo;
     let tdCategoria = document.createElement('td');
-    tdCategoria.innerHTML = evento.categoria;
-    let tdDia = document.createElement('td');
-    tdDia.innerHTML = evento.dia;
+    tdCategoria.innerHTML = livro.categoria;
+    let tdAutor = document.createElement('td');
+    tdAutor.innerHTML = livro.autor;
     let tdAlterar = document.createElement('td');
     let btnAlterar = document.createElement('button');
     btnAlterar.innerHTML = "Alterar";
     btnAlterar.addEventListener("click", buscaUsuario, false);
-    btnAlterar.id_evento = evento.id_evento;
+    btnAlterar.id = livro.id;
     tdAlterar.appendChild(btnAlterar);
     let tdExcluir = document.createElement('td');
     let btnExcluir = document.createElement('button');
     btnExcluir.addEventListener("click", excluir, false);
-    btnExcluir.id_evento = evento.id_evento;
+    btnExcluir.id = livro.id;
     btnExcluir.innerHTML = "Excluir";
     tdExcluir.appendChild(btnExcluir);
     tr.appendChild(tdId);
-    tr.appendChild(tdNome);
-    tr.appendChild(tdLugar);
+    tr.appendChild(tdTitulo);
     tr.appendChild(tdCategoria);
-    tr.appendChild(tdDia);
+    tr.appendChild(tdAutor);
     tr.appendChild(tdAlterar);
     tr.appendChild(tdExcluir);
     tbody.appendChild(tr);
 } 
 
 function excluir(evt) {
-    let id_evento = evt.currentTarget.id_evento;
+    let id = evt.currentTarget.id;
     let excluir = confirm("Você tem certeza que deseja excluir este usuário?");
     if (excluir == true) {
-        fetch('excluir.php?id_evento=' + id_evento,
+        fetch('excluir.php?id=' + id,
             {
                 method: "GET",
                 headers: { 'Content-Type': "application/json; charset=UTF-8" }
             }
         )
             .then(response => response.json())
-            .then(retorno => excluirUsuario(retorno, id_evento))
+            .then(retorno => excluirUsuario(retorno, id))
             .catch(error => console.log(error));
     }
 }
 
-function excluirUsuario(retorno, id_evento) {
+function excluirUsuario(retorno, id) {
     if (retorno == true) {
-        let tbody = document.getElementById('eventos');
+        let tbody = document.getElementById('livros');
         for (const tr of tbody.children) {
-            if (tr.children[0].innerHTML == id_evento) {
+            if (tr.children[0].innerHTML == id) {
                 tbody.removeChild(tr);
             }
         }
     }
 }
 
-function alterarUsuario(evento) {
-    let tbody = document.getElementById('eventos');
+function alterarUsuario(livro) {
+    let tbody = document.getElementById('livros');
     for (const tr of tbody.children) {
-        if (tr.children[0].innerHTML == evento.id_evento) {
-            tr.children[1].innerHTML = evento.nome;
-            tr.children[2].innerHTML = evento.lugar;
-            tr.children[3].innerHTML = evento.categoria;
-            tr.children[4].innerHTML = evento.dia;
+        if (tr.children[0].innerHTML == livro.id) {
+            tr.children[1].innerHTML = livro.titulo;
+            tr.children[2].innerHTML = livro.categoria;
+            tr.children[3].innerHTML = livro.autor;
         }
     }
 }
 
 function buscaUsuario(evt) {
-    let id_evento = evt.currentTarget.id_evento;
-    fetch('buscaUsuario.php?id_evento=' + id_evento,
+    let id = evt.currentTarget.id;
+    fetch('buscaUsuario.php?id=' + id,
         {
             method: "GET",
             headers: { 'Content-Type': "application/json; charset=UTF-8" }
         }
     )
         .then(response => response.json())
-        .then(evento => preencheForm(evento))
+        .then(livro => preencheForm(livro))
         .catch(error => console.log(error));
 }
 
-function preencheForm(evento) {
-    let inputIDUsuario = document.getElementsByName("id_evento")[0];
-    inputIDUsuario.value = evento.id_evento;
-    let inputNome = document.getElementsByName("nome")[0];
-    inputNome.value = evento.nome
-    let inputLugar = document.getElementsByName("lugar")[0];
-    inputLugar.value = evento.lugar;
+function preencheForm(livro) {
+    let inputIDUsuario = document.getElementsByName("id")[0];
+    inputIDUsuario.value = livro.id;
+    let inputTitulo = document.getElementsByName("titulo")[0];
+    inputTitulo.value = livro.titulo
     let inputCategoria = document.getElementsByName("categoria")[0];
-    inputCategoria.value = evento.categoria;
-    let inputDia = document.getElementsByName("dia")[0];
-    inputDia.value = evento.dia;
+    inputCategoria.value = livro.categoria;
+    let inputAutor = document.getElementsByName("autor")[0];
+    inputAutor.value = livro.autor;
     
 }
 
@@ -125,61 +119,57 @@ function salvarUsuario(event) {
     // parar o comportamento padrão do form
     event.preventDefault();
     // obtém o input id_usuario
-    let inputIDUsuario = document.getElementsByName("id_evento")[0];
+    let inputIDUsuario = document.getElementsByName("id")[0];
     // pega o valor do input id_usuario
-    let id_evento = inputIDUsuario.value;
+    let id = inputIDUsuario.value;
 
-    let inputNome = document.getElementsByName("nome")[0];
-    let nome = inputNome.value;
-    let inputLugar = document.getElementsByName("lugar")[0];
-    let lugar = inputLugar.value;
+    let inputTitulo = document.getElementsByName("titulo")[0];
+    let titulo = inputTitulo.value;
     let inputCategoria = document.getElementsByName("categoria")[0];
     let categoria = inputCategoria.value;
-    let inputDia = document.getElementsByName("dia")[0];
-    let dia = inputDia.value;
+    let inputAutor = document.getElementsByName("autor")[0];
+    let autor = inputAutor.value;
 
-    if (id_evento == "") {
-        cadastrar(id_evento, nome, lugar, categoria, dia);
+    if (id == "") {
+        cadastrar(id, titulo, categoria, autor);
     } else {
-        alterar(id_evento, nome, lugar, categoria, dia);
+        alterar(id, titulo, categoria, autor);
     }
     document.getElementsByTagName('form')[0].reset();
 }
 
-function cadastrar(id_evento, nome, lugar, categoria, dia) {
+function cadastrar(id, titulo, categoria, autor) {
     fetch('inserir.php',
         {
             method: 'POST',
             body: JSON.stringify({
-                id_evento: id_evento,
-                nome: nome,
-                lugar: lugar,
+                id: id,
+                titulo: titulo,
                 categoria: categoria,
-                dia: dia
+                autor: autor
             }),
             headers: { 'Content-Type': "application/json; charset=UTF-8" }
         }
     )
         .then(response => response.json())
-        .then(evento => inserirUsuario(evento))
+        .then(livro => inserirUsuario(livro))
         .catch(error => console.log(error));
 }
 
-function alterar(id_evento, nome, lugar, categoria, dia) {
+function alterar(id, titulo, categoria, autor) {
     fetch('alterar.php',
         {
             method: 'POST',
             body: JSON.stringify({
-                id_evento: id_evento,
-                nome: nome,
-                lugar: lugar,
+                id: id,
+                titulo: titulo,
                 categoria: categoria,
-                dia: dia
+                autor: autor
             }),
             headers: { 'Content-Type': "application/json; charset=UTF-8" }
         }
     )
         .then(response => response.json())
-        .then(eventos => alterarUsuario(eventos))
+        .then(livro => alterarUsuario(livro))
         .catch(error => console.log(error));
 }

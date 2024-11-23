@@ -4,15 +4,14 @@ require_once "conexao.php";
 $conexao = conectar();
 
 $usuario = json_decode(file_get_contents("php://input"));
-$sql = "INSERT INTO eventos 
-        (nome, lugar, categoria, dia)
+$sql = "INSERT INTO livros
+        (titulo, categoria, autor)
         VALUES 
-        ('$usuario->nome', 
-        '$usuario->lugar',
+        ('$usuario->titulo', 
         '$usuario->categoria',
-        '$usuario->dia')";
+        '$usuario->autor')";
 
 executarSQL($conexao, $sql); 
 
-$usuario->id_evento = mysqli_insert_id($conexao);
+$usuario->id = mysqli_insert_id($conexao);
 echo json_encode($usuario);

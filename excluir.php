@@ -1,9 +1,9 @@
 <?php
 
-$id_evento = $_GET['id_evento'];
+$id = $_GET['id'];
 
 require_once "conexao.php";
 $conexao = conectar();
-$sql = "DELETE FROM eventos WHERE id_evento = $id_evento";
+$sql = "DELETE FROM livros WHERE id = $id";
 $retorno = executarSQL($conexao, $sql);
 echo json_encode($retorno); 

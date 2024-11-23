@@ -11,13 +11,13 @@
   border: none;
   border-radius: 20px;
   color: white;
-  background-color: purple;
+  background-color: #42a5f5;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .botao:hover {
-  background-color: #f88def;
+  background-color: #bbdefb;
 }
 
 body {

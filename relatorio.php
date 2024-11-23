@@ -24,7 +24,7 @@ body
 
  h1
 {
-	color: purple;
+	color: #42a5f5;
 }
 table {
   border-collapse: collapse;
@@ -35,10 +35,10 @@ td,th {
   padding: 10px;
 }
 tr:nth-child(even)
-	{background-color: #e0bcdd}
+	{background-color:#bbdefb}
 thead 
 {
-  background-color: #e0bcdd;
+  background-color: #bbdefb;
   color: black;
 }
 </style>
@@ -46,30 +46,27 @@ thead
 <body>
 ';
 
-$dados .= "<h1 style='text-align: center;text-decoration: underline;'> Relatorio de eventos </h1> ";
+$dados .= "<h1 style='text-align: center;text-decoration: underline;'> Relatorio de livros </h1> ";
 
 $dados .= "<table>
         <thead>
           <tr>
           <th>ID</th>
-          <th>Nome</th>
-          <th>Lugar</th>
-		  <th>Categoria</th>      
-          <th> Dia </th>       
+          <th>Titulo</th>
+		      <th>Categoria</th>      
+          <th> Autor </th>       
           </tr>
         </thead>
         <tbody>";
 
-$sql = "SELECT id_evento, nome,lugar, categoria, dia FROM eventos";
+$sql = "SELECT * FROM livros";
 $resultado = mysqli_query($conexao, $sql);
 while ($linha = mysqli_fetch_assoc($resultado)) {
     $dados .= "<tr>";
-    $dados .= '<td>' . $linha['id_evento'] . '</td>';
-    $dados .= '<td>' . $linha['nome'] . '</td>';
-    $dados .= '<td>' . $linha['lugar'] . '</td>';
+    $dados .= '<td>' . $linha['id'] . '</td>';
+    $dados .= '<td>' . $linha['titulo'] . '</td>';
     $dados .= '<td>' . $linha['categoria'] . '</td>';
-    $dataNasc = date('d/m/Y', strtotime($linha['dia']));
-    $dados .= '<td>' . $dataNasc . '</td>';
+    $dados .= '<td>' . $linha['autor'] . '</td>';
     $dados .= "</tr>";
 }
 $dados .= "</tbody>";

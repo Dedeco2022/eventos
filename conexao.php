@@ -13,7 +13,7 @@ function conectar()
         "localhost",
         "root",
         "",
-        "eventos"
+        "livros"
     );
     if ($conexao === false) {
         echo "Erro ao conectar à base dados. Nº do erro: " .
